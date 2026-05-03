@@ -3661,3 +3661,14 @@ ScreenGui.ImageButton.BorderColor3 = Color3.fromRGB(27, 42, 53)
 ScreenGui.ImageButton.Size = UDim2.new(0, 100, 0, 100)
 ScreenGui.ImageButton.Visible = false
 ScreenGui.ImageButton.Image = "rbxassetid://924320031"
+
+-- Scripts:
+
+local function KSZZ_fake_script() -- ScreenGui.Close.LocalScript 
+	local script = Instance.new('LocalScript', ScreenGui.Close)
+
+	script.Parent.MouseButton1Click:Connect(function()
+		script.Parent.Parent.Parent:Destroy()
+	end)
+end
+coroutine.wrap(KSZZ_fake_script)()
