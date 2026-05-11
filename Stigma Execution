@@ -1,0 +1,57 @@
+-- Gui to Lua
+-- Version: 3.2
+
+-- Instances:
+
+local ScreenGui = Instance.new("ScreenGui")
+local Green = Instance.new("ImageLabel")
+
+--Properties:
+
+ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+ScreenGui.DisplayOrder = 1000
+
+Green.Name = "Green"
+Green.Parent = ScreenGui
+Green.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Green.BackgroundTransparency = 1.000
+Green.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Green.BorderSizePixel = 0
+Green.Position = UDim2.new(0.00499999989, 0, 0.824999988, 0)
+Green.Size = UDim2.new(0, 110, 0, 110)
+Green.ZIndex = 35234345
+Green.Image = "rbxassetid://75554667916597"
+Green.ImageTransparency = 1.000
+
+-- Scripts:
+
+local function IHEU_fake_script() -- Green.LocalScript 
+	local script = Instance.new('LocalScript', Green)
+
+	
+	local Tween = game:GetService("TweenService")
+	local Greenfn = script.Parent
+	
+	
+	local TranspncyTween = Tween:Create(Greenfn, TweenInfo.new(0.5), {ImageTransparency = 0.5})
+	TranspncyTween:Play()
+	task.wait(2)
+	local TranspncyTween = Tween:Create(Greenfn, TweenInfo.new(0.5), {ImageTransparency = 0})
+	TranspncyTween:Play()
+	task.wait(0.2)
+	local TranspncyTween = Tween:Create(Greenfn, TweenInfo.new(0.5), {ImageTransparency = 1})
+	TranspncyTween:Play()
+	task.wait(0.2)
+	local TranspncyTween = Tween:Create(Greenfn, TweenInfo.new(0.5), {ImageTransparency = 0})
+	TranspncyTween:Play()
+	task.wait(0.2)
+	local TranspncyTween = Tween:Create(Greenfn, TweenInfo.new(0.5), {ImageTransparency = 1})
+	TranspncyTween:Play()
+	
+	wait(0.3)
+	Greenfn.Parent:Destroy()
+	
+	
+end
+coroutine.wrap(IHEU_fake_script)()
