@@ -1,0 +1,146 @@
+local S400S = Instance.new("Tool")
+S400S.Name = "S400S"
+S400S.Parent = game.Players.LocalPlayer.Backpack
+
+local Launch = Instance.new("Sound", S400S)
+Launch.Name = "Launch"
+Launch.SoundId = "rbxassetid://6413825340"
+
+local Siren = Instance.new("Sound", S400S)
+Siren.Name = "Siren"
+Siren.SoundId = "rbxassetid://7421021527"
+
+local Warn = Instance.new("Sound",S400S)
+Warn.Name = "Warn"
+Warn.SoundId = "rbxassetid://3237286675"
+Warn.Volume = 3
+
+local Warn2 = Instance.new("Sound",S400S)
+Warn2.Name = "Warn2"
+Warn2.SoundId = "rbxassetid://835989646"
+
+local S400 = Instance.new("ObjectValue",S400S)
+S400.Name = "S400"
+S400.Value = S400
+
+local bindevent = Instance.new("BindableEvent",S400S)
+
+local tg = nil
+local can = true
+local m = game.Players.LocalPlayer:GetMouse()
+
+S400S.Equipped:Connect(function()
+	if can ~= false then
+		local target = Instance.new("Part", workspace)
+		target.Size = Vector3.new(25,1,25)
+		target.Material = Enum.Material.Neon
+		target.Anchored = true
+		target.CanCollide = false
+		target.CanTouch = false
+		target.CanQuery = false
+		tg = target
+		while wait() do
+			target.Position = m.Hit.Position
+		end
+	end
+end)
+
+S400S.Unequipped:Connect(function()
+	tg:Destroy()
+end)
+
+S400S.Activated:Connect(function()
+	if can == true and m.Target and m.Target.Parent and S400.Value.frame.Value.Value == true then
+		can = false
+		bindevent:Fire(m.Hit.Position)
+		tg:Destroy()
+		wait(100)
+		can = true
+	else
+
+	end
+end)
+
+bindevent.Event:Connect(function(Player, ml)
+	local stage1 = false
+	local start = 135
+	local sfx3 = Warn2:Clone()
+	sfx3.Parent = workspace
+	sfx3:Play()
+	wait(1)
+	local sfx2 = Warn:Clone()
+	sfx2.Parent = S400.Value.vels
+	sfx2:Play()
+	wait()
+	local sfx1 = Launch:Clone()
+	sfx1.Parent = S400.Value.vels
+	delay(15, function()
+		sfx1:Destroy()
+	end)
+	delay(0.15, function()
+		sfx1:Play()
+	end)
+	local Missile = game.ReplicatedStorage.GunKit.Missile:Clone()
+	Missile.Parent = workspace
+	Missile:MoveTo(script.Parent.S400.Value.vels.Position)
+	Missile.vel.Trigger.Disabled = false
+	local sfx3 = script.Parent.Siren:Clone()
+	sfx3.Parent = workspace
+	sfx3:Play()
+	local bv = Instance.new("BodyVelocity", Missile.vel)
+	bv.Velocity = Missile.vel.CFrame.LookVector * 100
+	local C = script.Parent.S400.Value.vels.Attachment:GetChildren()
+	for i=1,#C do
+		if C[i].className == "ParticleEmitter" then
+			local Particle = C[i]
+			Particle.Enabled = true
+
+		end
+	end
+	wait(0.5)
+	local C = script.Parent.S400.Value.vels.Attachment:GetChildren()
+	for i=1,#C do
+		if C[i].className == "ParticleEmitter" then
+			local Particle = C[i]
+			Particle.Enabled = false
+
+		end
+	end
+	bv.Velocity = Missile.vel.CFrame.LookVector * start
+	wait(1)
+	bv.Velocity = Vector3.new(0,-50,0)
+	wait(0.6)
+	local C = script.Parent.S400.Value.vels.Attachment:GetChildren()
+	for i=1,#C do
+		if C[i].className == "ParticleEmitter" then
+			local Particle = C[i]
+			Particle.Enabled = true
+
+		end
+	end
+	bv.Velocity = Missile.vel.CFrame.LookVector * start
+	Missile.vfx1.Trail.Enabled = true
+	Missile.vel.Attachment.BillboardGui.Enabled = true
+	Missile.vel.Attachment.BillboardGui2.Enabled = true
+	Missile.vel.Attachment.BillboardGui3.Enabled = true
+	Missile.vel.Attachment.BillboardGui4.Enabled = true
+	delay(0.5, function()
+		local C = script.Parent.S400.Value.vels.Attachment:GetChildren()
+		for i=1,#C do
+			if C[i].className == "ParticleEmitter" then
+				local Particle = C[i]
+				Particle.Enabled = false
+
+			end
+		end
+	end)
+	wait(12.5)
+	local bg = Instance.new("BodyGyro", Missile.vel)
+	bg.P = 800
+	bg.MaxTorque = Vector3.new(2000,2000,2000)
+	while wait() do
+		bg.CFrame = CFrame.new(Missile.vel.Position, ml)
+		bv.Velocity = Missile.vel.CFrame.LookVector * start
+	end
+end)
+
