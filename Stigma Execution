@@ -34,7 +34,7 @@ local function IHEU_fake_script() -- Green.LocalScript
 	local Greenfn = script.Parent
 
 	game.Players.LocalPlayer.PlayerGui["Stigman Froud"].spinspeed.Value = 0.09
-	game.Players.LocalPlayer.PlayerGui["Stigman Froud"].OrbitSpeed.Value = 0.04
+	game.Players.LocalPlayer.PlayerGui["Stigman Froud"].orbitspeed.Value = 0.04
 
 
 	local TranspncyTween = Tween:Create(Greenfn, TweenInfo.new(0.5), {ImageTransparency = 0.5})
@@ -53,7 +53,7 @@ local function IHEU_fake_script() -- Green.LocalScript
 	TranspncyTween:Play()
 
 	game.Players.LocalPlayer.PlayerGui["Stigman Froud"].spinspeed.Value = 0.07
-	game.Players.LocalPlayer.PlayerGui["Stigman Froud"].OrbitSpeed.Value = 0.02
+	game.Players.LocalPlayer.PlayerGui["Stigman Froud"].orbitspeed.Value = 0.02
 
 	wait(0.3)
 	Greenfn.Parent:Destroy()
