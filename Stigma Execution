@@ -29,11 +29,14 @@ Green.ImageTransparency = 1.000
 local function IHEU_fake_script() -- Green.LocalScript 
 	local script = Instance.new('LocalScript', Green)
 
-	
+
 	local Tween = game:GetService("TweenService")
 	local Greenfn = script.Parent
-	
-	
+
+	game.Players.LocalPlayer.PlayerGui["Stigman Froud"].spinspeed.Value = 0.09
+	game.Players.LocalPlayer.PlayerGui["Stigman Froud"].OrbitSpeed.Value = 0.04
+
+
 	local TranspncyTween = Tween:Create(Greenfn, TweenInfo.new(0.5), {ImageTransparency = 0.5})
 	TranspncyTween:Play()
 	task.wait(2)
@@ -48,10 +51,13 @@ local function IHEU_fake_script() -- Green.LocalScript
 	task.wait(0.2)
 	local TranspncyTween = Tween:Create(Greenfn, TweenInfo.new(0.5), {ImageTransparency = 1})
 	TranspncyTween:Play()
-	
+
+	game.Players.LocalPlayer.PlayerGui["Stigman Froud"].spinspeed.Value = 0.07
+	game.Players.LocalPlayer.PlayerGui["Stigman Froud"].OrbitSpeed.Value = 0.02
+
 	wait(0.3)
 	Greenfn.Parent:Destroy()
-	
-	
+
+
 end
 coroutine.wrap(IHEU_fake_script)()
