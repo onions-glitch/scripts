@@ -1,0 +1,121 @@
+local Players = game:GetService("Players")
+
+local v = game.Players.LocalPlayer.PlayerGui.ScreenGui.Frame.Player.Value
+local player = Players:FindFirstChild(v)
+
+
+	local plr = player.Character
+
+	local Shaft = Instance.new("Part", plr)
+
+	Shaft.Name='Shaft'
+
+	Shaft.Size=Vector3.new(1, 2.5, 1)
+
+	Shaft.TopSurface=0
+
+	Shaft.BottomSurface=0
+
+	Shaft.CanCollide=true
+
+	local Cyln=Instance.new("CylinderMesh", Shaft)
+
+	Cyln.Scale=Vector3.new(0.5,0.7,0.5)
+
+	Instance.new("Weld", plr)
+
+	plr.Weld.Part0=plr:FindFirstChild("Torso") or plr:FindFirstChild("LowerTorso")
+
+	plr.Weld.Part1=plr.Shaft 
+
+	plr.Weld.C0=CFrame.new(0,-0.35,-0.9)*CFrame.fromEulerAnglesXYZ(2.2,0,0) 
+
+	Shaft.BrickColor=BrickColor.new("Pastel brown")
+
+	local Tip=Instance.new("Part", plr)
+
+	Tip.Name='Tip'
+
+	Tip.TopSurface=0
+
+	Tip.BottomSurface=0
+
+	Tip.Size=Vector3.new(1, 1, 1)
+
+	Tip.CanCollide=true
+
+	Tip.Touched:connect(function(prt) if prt.Parent~=player then spawn(function() for i=1, 5 do local pert=Instance.new("Part", player) pert.CFrame=CFrame.new(prt.Position) pert.CanCollide=true local mesh=Instance.new("BlockMesh", pert) mesh.Scale=Vector3.new(0.2,0.2,0.2) pert.BrickColor=BrickColor.new("White") end end) end end)
+
+	local Cyln2=Instance.new("SpecialMesh", Tip)
+
+	Cyln2.MeshType='Sphere'
+
+	Cyln2.Scale=Vector3.new(0.6,0.6,0.6)
+
+	Instance.new("Weld", plr).Name='Weld2'
+
+	plr.Weld2.Part0=plr.Shaft
+
+	plr.Weld2.Part1=plr.Tip 
+
+	plr.Weld2.C0=CFrame.new(0,-.9,0)
+
+	Tip.BrickColor=BrickColor.new("Pink")
+
+	-----
+
+	local Ball1=Instance.new("Part", plr)
+
+	Ball1.Name='Ball1'
+
+	Ball1.Size=Vector3.new(1, 1, 1)
+
+	Ball1.TopSurface=0
+
+	Ball1.BottomSurface=0
+
+	local Cyln3=Instance.new("SpecialMesh", Ball1)
+
+	Cyln3.MeshType='Sphere'
+
+	Cyln3.Scale=Vector3.new(0.4,0.4,0.4)
+
+	Instance.new("Weld", plr).Name='Weld3'
+
+	plr.Weld3.Part0=plr.Shaft
+
+	plr.Weld3.Part1=plr.Ball1 
+
+	plr.Weld3.C0=CFrame.new(0.225,.4,0.2)
+
+	Ball1.BrickColor=BrickColor.new("Pastel brown")
+
+	-----
+
+	local Ball2=Instance.new("Part", plr)
+
+	Ball2.Name='Ball2'
+
+	Ball2.Size=Vector3.new(1, 1, 1)
+
+	Ball2.TopSurface=0
+
+	Ball2.BottomSurface=0
+
+	Cyln3=Instance.new("SpecialMesh", Ball2)
+
+	Cyln3.MeshType='Sphere'
+
+	Cyln3.Scale=Vector3.new(0.4,0.4,0.4)
+
+	Instance.new("Weld", plr).Name='Weld4'
+
+	plr.Weld4.Part0=plr.Shaft
+
+	plr.Weld4.Part1=plr.Ball2 
+
+	plr.Weld4.C0=CFrame.new(-0.225,.4,0.2)
+
+	Ball2.BrickColor=BrickColor.new("Pastel brown")
+
+
